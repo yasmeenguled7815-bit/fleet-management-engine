@@ -18,7 +18,7 @@ import com.enginefleet.Repository.DriverRepository;
 import com.enginefleet.Repository.VehicleRepository;
 
 @Controller
-@RequestMapping("/api/vehicle")
+@RequestMapping("/api/vehicles")
 public class VehicleController {
 	
 	@Autowired
