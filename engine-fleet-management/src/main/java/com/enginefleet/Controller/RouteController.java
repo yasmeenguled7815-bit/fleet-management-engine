@@ -33,7 +33,8 @@ public class RouteController {
 	
 	@GetMapping("/{id}")
 	public Route getById(@PathVariable Long id) {
-		return routeRepository.findById(id).orElseThrow(() -> new RuntimeException("Route not found"));
+		return routeRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Route not found"));
 	}
 	
 	@DeleteMapping("/{id}")
