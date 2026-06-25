@@ -4,6 +4,8 @@ package com.enginefleet.Entity;
 	import jakarta.persistence.GeneratedValue;
 	import jakarta.persistence.GenerationType;
 	import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 	@Entity
 	public class Vehicle {
@@ -17,6 +19,10 @@ package com.enginefleet.Entity;
 		private String type;
 		
 		private Integer capacity;
+		
+		@ManyToOne
+		@JoinColumn(name="driver_id")
+		private Driver driver;
 
 		public Long getId() {
 			return id;
@@ -49,5 +55,14 @@ package com.enginefleet.Entity;
 		public void setCapacity(Integer capacity) {
 			this.capacity = capacity;
 		}
+
+		public Driver getDriver() {
+			return driver;
+		}
+
+		public void setDriver(Driver driver) {
+			this.driver = driver;
+		}
+		
 	}
 

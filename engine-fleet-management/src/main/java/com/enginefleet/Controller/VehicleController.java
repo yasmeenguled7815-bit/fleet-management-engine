@@ -43,7 +43,7 @@ public class VehicleController {
 				.orElseThrow(() -> new RuntimeException("Vehicle not found"));
 	}
 	
-	@PutMapping("/{id}")
+	 @PutMapping("/{vehicleId}/assign/{driverId}")
 	public Vehicle asssignDriver(@PathVariable Long vehicleId,@PathVariable Long driverId) {
 		
 		Vehicle vehicle=vehicleRepository.findById(vehicleId)
