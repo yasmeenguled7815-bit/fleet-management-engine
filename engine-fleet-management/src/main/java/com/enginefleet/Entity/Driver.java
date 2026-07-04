@@ -14,7 +14,7 @@ public class Driver {
 	
 	private String name;
 	
-	private String lincesNumber;
+	private String licenseNumber;
 	
 	private String phoneNumber;
 	
@@ -38,12 +38,12 @@ public class Driver {
 		this.name = name;
 	}
 
-	public String getLincesNumber() {
-		return lincesNumber;
+	public String getLicenseNumber() {
+		return licenseNumber;
 	}
 
-	public void setLincesNumber(String lincesNumber) {
-		this.lincesNumber = lincesNumber;
+	public void setLicenseNumber(String licenseNumber) {
+		this.licenseNumber = licenseNumber;
 	}
 
 	public String getPhoneNumber() {
