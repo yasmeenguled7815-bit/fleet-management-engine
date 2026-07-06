@@ -1,6 +1,10 @@
 package com.enginefleet.Entity;
 
+import com.enginefleet.Enum.DeliveryStatus;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,13 +20,18 @@ public class DeliveryTask {
 	
 	private String pakageId;
 	
-	private String status;
-	
 	private String deliveryDate;
+	
+	@Enumerated(EnumType.STRING)
+	private DeliveryStatus status;
 	
 	@ManyToOne
 	@JoinColumn(name="vehicle_id")
 	private Vehicle vehicle;
+	
+	@ManyToOne
+	@JoinColumn(name="driver_id")
+	private Driver driver;
 	
 	@ManyToOne
 	@JoinColumn(name="route_id")
@@ -44,20 +53,20 @@ public class DeliveryTask {
 		this.pakageId = pakageId;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getDeliveryDate() {
 		return deliveryDate;
 	}
 
 	public void setDeliveryDate(String deliveryDate) {
 		this.deliveryDate = deliveryDate;
+	}
+	
+	public DeliveryStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(DeliveryStatus status) {
+		this.status = status;
 	}
 
 	public Vehicle getVehicle() {
@@ -66,6 +75,14 @@ public class DeliveryTask {
 
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
+	}
+	
+	public Driver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
 	}
 
 	public Route getRoute() {
