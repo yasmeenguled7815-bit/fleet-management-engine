@@ -27,7 +27,25 @@ public class DispatchService {
 
 	@Autowired
 	private RouteRepository routeRepository;
-
+	
+	public DeliveryTask updateStatus(Long taskId) {
+		
+		DeliveryTask task=taskRepository.findById(taskId)
+				.orElseThrow(() -> new RuntimeException("task not found"));
+			
+		if(task.getStatus()==DeliveryStatus.UNASSIGNED) {
+			task.setStatus(DeliveryStatus.DISPATCHED);
+		}
+		else if(task.getStatus()==DeliveryStatus.DISPATCHED) {
+			task.setStatus(DeliveryStatus.IN_TRANSIT);
+		}
+		else if(task.getStatus()==DeliveryStatus.IN_TRANSIT) {
+			task.setStatus(DeliveryStatus.DELIVERED);
+		}
+		
+		return taskRepository.save(task);
+	}
+	
 	public DeliveryTask dispatch(Long taskId, Long driverId, Long vehicleId, Long routeId) {
 
 		DeliveryTask task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("Task not found"));
