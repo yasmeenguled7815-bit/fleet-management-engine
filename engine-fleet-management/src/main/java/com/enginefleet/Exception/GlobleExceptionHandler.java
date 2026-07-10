@@ -12,22 +12,41 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobleExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<Map<String,String>>
-	handleNotFound(ResourceNotFoundException ex){
-		
-		Map<String,String> map=new HashMap<>();
-		
-		map.put("error",ex.getMessage());
-		
-		return new ResponseEntity<>(map,HttpStatus.NOT_FOUND);
+	public ResponseEntity<Map<String, String>> handleNotFound(ResourceNotFoundException ex) {
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put("error", ex.getMessage());
+
+		return new ResponseEntity<>(map, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<Map<String,String>> handleException(Exception ex){
-		Map<String,String> map=new HashMap<>();
-		
-		map.put("error",ex.getMessage());
-		
-		return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
+	public ResponseEntity<Map<String, String>> handleException(Exception ex) {
+		Map<String, String> map = new HashMap<>();
+
+		map.put("error", ex.getMessage());
+
+		return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(InvalidAddressException.class)
+	public ResponseEntity<Map<String, String>> InvalidAddress(InvalidAddressException ex) {
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put("errore", ex.getMessage());
+
+		return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+	}
+   
+	@ExceptionHandler(ApiRateLimitException.class)
+	public ResponseEntity<Map<String, String>> RateLimit(ApiRateLimitException ex) {
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put("error", ex.getMessage());
+
+		return new ResponseEntity<>(map, HttpStatus.TOO_MANY_REQUESTS);
 	}
 }
